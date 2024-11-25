@@ -117,4 +117,15 @@ The following figure shows an application on one USArray trace (This example rep
 <img src='https://github.com/aaspip/gallery/blob/main/pyntfa/test_pyntfa_usarray1d.png' alt='comp' width=960/>
 
 
+The following figure shows an application on the LIGO data (for detecting gravitational wave signal)
+[demos/test_pyntfa_ligo.py](https://github.com/aaspip/pyntfa/tree/main/demos/test_pyntfa_ligo.py)
+<img src='https://github.com/aaspip/gallery/blob/main/pyntfa/test_pyntfa_ligo.png' alt='comp' width=960/>
+
+The following figure shows an application on the PcP phase (for studying core-mantle boundary)
+[demos/test_pyntfa_pcp.py](https://github.com/aaspip/pyntfa/tree/main/demos/test_pyntfa_pcp.py)
+<img src='https://github.com/aaspip/gallery/blob/main/pyntfa/test_pyntfa_pcp.png' alt='comp' width=960/>
+
+The following figure shows an application on the SS precursor (for studying MTZ)
+[demos/test_pyntfa_ss.py](https://github.com/aaspip/pyntfa/tree/main/demos/test_pyntfa_ss.py)
+<img src='https://github.com/aaspip/gallery/blob/main/pyntfa/test_pyntfa_ss.png' alt='comp' width=960/>
 
