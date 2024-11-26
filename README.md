@@ -40,7 +40,7 @@ BibTeX:
     
 -----------
 ## Copyright
-    The pyntfa developing team, 2021-present
+    The pyntfa developing team, 2022-present
 -----------
 
 ## License
@@ -73,10 +73,11 @@ or
 * scipy 
 * numpy 
 * matplotlib
+* pynpre
 
 -----------
 ## Modules
-    xxx.py  -> description
+    ntfa.py  -> core python fuction for calling the Cpython (ntfacfun)
     
 -----------
 ## Development
