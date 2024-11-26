@@ -35,7 +35,7 @@ ntfac_module = Extension('ntfacfun', sources=['pyntfa/src/main.c',
 
 setup(
     name="pyntfa",
-    version="0.0.0.1",
+    version="0.0.2.0",
     license='GNU General Public License, Version 3 (GPLv3)',
     description="A python package of non-stationary time-frequency analysis for multi-dimensional multi-channel seismic data",
     long_description=long_description,
