@@ -115,7 +115,7 @@ dt = 0.004
 t = np.arange(n1)*dt
 ttmp = np.arange(n1)*dt*1000
 
-fig = plt.figure(figsize=(30, 20))
+fig = plt.figure(figsize=(24, 16))
 
 i=1;
 # for sigma in [0,0.2,0.4,0.6,0.8]:

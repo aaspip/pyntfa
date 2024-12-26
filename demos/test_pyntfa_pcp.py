@@ -149,3 +149,174 @@ plt.gca().text(-0.18,1,'(f)',transform=plt.gca().transAxes,size=18,weight='norma
 plt.savefig('test_pyntfa_pcp.png',format='png',dpi=300)
 plt.savefig('test_pyntfa_pcp.pdf',format='pdf',dpi=300)
 plt.show();
+
+
+# ## result for STFT (uncomment for running)
+# from pynpre import stft1d,st1d
+# 
+# dout0,w0,dw,nw = stft1d(earth0,dt=dt,inv=0,opt=1,sym=0,ntw=21,ot=0,wind=0,verb=1)
+# dout0=dout0.reshape([n1,nw,2],order='F');
+# 
+# dout1,w0,dw,nw = stft1d(earth1,dt=dt,inv=0,opt=1,sym=0,ntw=21,ot=0,wind=0,verb=1)
+# dout1=dout1.reshape([n1,nw,2],order='F');
+# 
+# dout2,w0,dw,nw = stft1d(earth2,dt=dt,inv=0,opt=1,sym=0,ntw=21,ot=0,wind=0,verb=1)
+# dout2=dout2.reshape([n1,nw,2],order='F');
+# 
+# ## Time-frequency spectra
+# dtf0=dout0[:,:,0]*dout0[:,:,0]+dout0[:,:,1]*dout0[:,:,1];
+# dtf1=dout1[:,:,0]*dout1[:,:,0]+dout1[:,:,1]*dout1[:,:,1];
+# dtf2=dout2[:,:,0]*dout2[:,:,0]+dout2[:,:,1]*dout2[:,:,1];
+# 
+# freqs=np.linspace(0,nw-1,nw)*dw;
+# t=np.linspace(0,(n1-1)*dt,n1)
+# 
+# fig = plt.figure(figsize=(12, 6))
+# plt.subplot(3,2,1)
+# plt.plot(t,earth0,'k',linewidth=1);plt.ylim(-1,1.2);plt.gca().set_xticks([]);plt.ylabel('Amplitude');plt.title('Raw');
+# #adding labels
+# ymin, ymax = plt.gca().get_ylim()
+# for ii in range(len(times)):
+#     plt.plot([times[ii],times[ii]],[ymin,ymax],'k--',linewidth=1);
+#     plt.text(times[ii]+1,ymax-(ymax-ymin)*0.2,phases[ii])
+# plt.gca().text(-0.18,1,'(a)',transform=plt.gca().transAxes,size=18,weight='normal')
+# 
+# plt.subplot(3,2,3)
+# plt.plot(t,earth1,'k',linewidth=1);plt.ylim(-1,1.2);plt.gca().set_xticks([]);plt.ylabel('Amplitude');plt.title('Processed');
+# #adding labels
+# ymin, ymax = plt.gca().get_ylim()
+# for ii in range(len(times)):
+#     plt.plot([times[ii],times[ii]],[ymin,ymax],'k--',linewidth=1);
+#     plt.text(times[ii]+1,ymax-(ymax-ymin)*0.2,phases[ii])
+# plt.gca().text(-0.18,1,'(b)',transform=plt.gca().transAxes,size=18,weight='normal')
+# 
+# plt.subplot(3,2,5)
+# plt.plot(t,earth2,'k',linewidth=1);plt.ylim(-1,1.2);plt.ylabel('Amplitude');plt.title('Removed noise');
+# #adding labels
+# ymin, ymax = plt.gca().get_ylim()
+# for ii in range(len(times)):
+#     plt.plot([times[ii],times[ii]],[ymin,ymax],'k--',linewidth=1);
+#     plt.text(times[ii]+1,ymax-(ymax-ymin)*0.2,phases[ii])
+# plt.xlabel('Time (s)');
+# plt.gca().text(-0.18,1,'(c)',transform=plt.gca().transAxes,size=18,weight='normal')
+# 
+# plt.subplot(3,2,2)
+# plt.imshow(dtf0.T,clim=(0, 50),cmap=plt.cm.jet, interpolation='none', extent=[0,(n1*1-1)*dt,0,(nw*dw-dw)],origin='lower',aspect='auto');
+# plt.ylabel('Frequency (Hz)');plt.title('Time-frequency Spectrum (STFT)')
+# plt.ylim([0, 1])
+# #adding labels
+# ymin, ymax = plt.gca().get_ylim()
+# for ii in range(len(times)):
+#     plt.plot([times[ii],times[ii]],[ymin,ymax],'w--',linewidth=1);
+#     plt.text(times[ii]+1,ymax-(ymax-ymin)*0.2,phases[ii],color='w')
+# plt.gca().text(-0.18,1,'(d)',transform=plt.gca().transAxes,size=18,weight='normal')
+# 
+# plt.subplot(3,2,4)
+# plt.imshow(dtf1.T,clim=(0, 0.5),cmap=plt.cm.jet, interpolation='none', extent=[0,(n1*1-1)*dt,0,(nw*dw-dw)],origin='lower',aspect='auto');
+# plt.ylabel('Frequency (Hz)');
+# plt.ylim([0, 1])
+# #adding labels
+# ymin, ymax = plt.gca().get_ylim()
+# for ii in range(len(times)):
+#     plt.plot([times[ii],times[ii]],[ymin,ymax],'w--',linewidth=1);
+#     plt.text(times[ii]+1,ymax-(ymax-ymin)*0.2,phases[ii],color='w')
+# plt.gca().text(-0.18,1,'(e)',transform=plt.gca().transAxes,size=18,weight='normal')
+# 
+# plt.subplot(3,2,6)
+# plt.imshow(dtf2.T,clim=(0, 50),cmap=plt.cm.jet, interpolation='none', extent=[0,(n1*1-1)*dt,0,(nw*dw-dw)],origin='lower',aspect='auto');
+# plt.ylabel('Frequency (Hz)');plt.xlabel('Time (s)');
+# plt.ylim([0, 1])
+# #adding labels
+# ymin, ymax = plt.gca().get_ylim()
+# for ii in range(len(times)):
+#     plt.plot([times[ii],times[ii]],[ymin,ymax],'w--',linewidth=1);
+#     plt.text(times[ii]+1,ymax-(ymax-ymin)*0.2,phases[ii],color='w')
+# plt.gca().text(-0.18,1,'(f)',transform=plt.gca().transAxes,size=18,weight='normal')
+# plt.savefig('test_pyntfa_pcp_stft.png',format='png',dpi=300)
+# plt.savefig('test_pyntfa_pcp_stft.pdf',format='pdf',dpi=300)
+# plt.show();
+# 
+# ## result for ST (uncomment for running)
+# from pynpre import stft1d,st1d
+# 
+# dout0,w0,dw,nw = st1d(earth0,dt=dt,inv=0,flo=0,fhi=0.5,verb=1)
+# dout0=dout0.reshape([n1,nw,2],order='F');
+# 
+# dout1,w0,dw,nw = st1d(earth1,dt=dt,inv=0,flo=0,fhi=0.5,verb=1)
+# dout1=dout1.reshape([n1,nw,2],order='F');
+# 
+# dout2,w0,dw,nw = st1d(earth2,dt=dt,inv=0,flo=0,fhi=0.5,verb=1)
+# dout2=dout2.reshape([n1,nw,2],order='F');
+# 
+# ## Time-frequency spectra
+# dtf0=dout0[:,:,0]*dout0[:,:,0]+dout0[:,:,1]*dout0[:,:,1];
+# dtf1=dout1[:,:,0]*dout1[:,:,0]+dout1[:,:,1]*dout1[:,:,1];
+# dtf2=dout2[:,:,0]*dout2[:,:,0]+dout2[:,:,1]*dout2[:,:,1];
+# 
+# freqs=np.linspace(0,nw-1,nw)*dw;
+# t=np.linspace(0,(n1-1)*dt,n1)
+# 
+# fig = plt.figure(figsize=(12, 6))
+# plt.subplot(3,2,1)
+# plt.plot(t,earth0,'k',linewidth=1);plt.ylim(-1,1.2);plt.gca().set_xticks([]);plt.ylabel('Amplitude');plt.title('Raw');
+# #adding labels
+# ymin, ymax = plt.gca().get_ylim()
+# for ii in range(len(times)):
+#     plt.plot([times[ii],times[ii]],[ymin,ymax],'k--',linewidth=1);
+#     plt.text(times[ii]+1,ymax-(ymax-ymin)*0.2,phases[ii])
+# plt.gca().text(-0.18,1,'(a)',transform=plt.gca().transAxes,size=18,weight='normal')
+# 
+# plt.subplot(3,2,3)
+# plt.plot(t,earth1,'k',linewidth=1);plt.ylim(-1,1.2);plt.gca().set_xticks([]);plt.ylabel('Amplitude');plt.title('Processed');
+# #adding labels
+# ymin, ymax = plt.gca().get_ylim()
+# for ii in range(len(times)):
+#     plt.plot([times[ii],times[ii]],[ymin,ymax],'k--',linewidth=1);
+#     plt.text(times[ii]+1,ymax-(ymax-ymin)*0.2,phases[ii])
+# plt.gca().text(-0.18,1,'(b)',transform=plt.gca().transAxes,size=18,weight='normal')
+# 
+# plt.subplot(3,2,5)
+# plt.plot(t,earth2,'k',linewidth=1);plt.ylim(-1,1.2);plt.ylabel('Amplitude');plt.title('Removed noise');
+# #adding labels
+# ymin, ymax = plt.gca().get_ylim()
+# for ii in range(len(times)):
+#     plt.plot([times[ii],times[ii]],[ymin,ymax],'k--',linewidth=1);
+#     plt.text(times[ii]+1,ymax-(ymax-ymin)*0.2,phases[ii])
+# plt.xlabel('Time (s)');
+# plt.gca().text(-0.18,1,'(c)',transform=plt.gca().transAxes,size=18,weight='normal')
+# 
+# plt.subplot(3,2,2)
+# plt.imshow(dtf0.T,clim=(0, 0.05),cmap=plt.cm.jet, interpolation='none', extent=[0,(n1*1-1)*dt,0,(nw*dw-dw)],origin='lower',aspect='auto');
+# plt.ylabel('Frequency (Hz)');plt.title('Time-frequency Spectrum (ST)')
+# plt.ylim([0, 1])
+# #adding labels
+# ymin, ymax = plt.gca().get_ylim()
+# for ii in range(len(times)):
+#     plt.plot([times[ii],times[ii]],[ymin,ymax],'w--',linewidth=1);
+#     plt.text(times[ii]+1,ymax-(ymax-ymin)*0.2,phases[ii],color='w')
+# plt.gca().text(-0.18,1,'(d)',transform=plt.gca().transAxes,size=18,weight='normal')
+# 
+# plt.subplot(3,2,4)
+# plt.imshow(dtf1.T,clim=(0, 0.005),cmap=plt.cm.jet, interpolation='none', extent=[0,(n1*1-1)*dt,0,(nw*dw-dw)],origin='lower',aspect='auto');
+# plt.ylabel('Frequency (Hz)');
+# plt.ylim([0, 1])
+# #adding labels
+# ymin, ymax = plt.gca().get_ylim()
+# for ii in range(len(times)):
+#     plt.plot([times[ii],times[ii]],[ymin,ymax],'w--',linewidth=1);
+#     plt.text(times[ii]+1,ymax-(ymax-ymin)*0.2,phases[ii],color='w')
+# plt.gca().text(-0.18,1,'(e)',transform=plt.gca().transAxes,size=18,weight='normal')
+# 
+# plt.subplot(3,2,6)
+# plt.imshow(dtf2.T,clim=(0, 0.05),cmap=plt.cm.jet, interpolation='none', extent=[0,(n1*1-1)*dt,0,(nw*dw-dw)],origin='lower',aspect='auto');
+# plt.ylabel('Frequency (Hz)');plt.xlabel('Time (s)');
+# plt.ylim([0, 1])
+# #adding labels
+# ymin, ymax = plt.gca().get_ylim()
+# for ii in range(len(times)):
+#     plt.plot([times[ii],times[ii]],[ymin,ymax],'w--',linewidth=1);
+#     plt.text(times[ii]+1,ymax-(ymax-ymin)*0.2,phases[ii],color='w')
+# plt.gca().text(-0.18,1,'(f)',transform=plt.gca().transAxes,size=18,weight='normal')
+# plt.savefig('test_pyntfa_pcp_st.png',format='png',dpi=300)
+# plt.savefig('test_pyntfa_pcp_st.pdf',format='pdf',dpi=300)
+# plt.show();

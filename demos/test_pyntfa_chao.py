@@ -136,7 +136,7 @@ plt.show();
 
 
 ot=-0.5
-fig = plt.figure(figsize=(20, 8))
+fig = plt.figure(figsize=(16, 6.4))
 plt.subplot(3,3,1)
 plt.plot(t,din,'k',linewidth=1);plt.ylim(-4,4);plt.gca().set_xticks([]);plt.ylabel('Amplitude');plt.title('Input');
 plt.gca().text(-0.15,1.05,'(a)',transform=plt.gca().transAxes,size=16,weight='normal')

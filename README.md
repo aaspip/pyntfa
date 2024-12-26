@@ -126,7 +126,13 @@ The following figure shows an application on the PcP phase (for studying core-ma
 [demos/test_pyntfa_pcp.py](https://github.com/aaspip/pyntfa/tree/main/demos/test_pyntfa_pcp.py)
 <img src='https://github.com/aaspip/gallery/blob/main/pyntfa/test_pyntfa_pcp.png' alt='comp' width=960/>
 
+The following figure shows an application on the PcP phase with STFT and ST. The comparisons with STFT/ST can be done by uncommenting the corresponding code of
+[demos/test_pyntfa_pcp.py](https://github.com/aaspip/pyntfa/tree/main/demos/test_pyntfa_pcp.py)
+<img src='https://github.com/aaspip/gallery/blob/main/pyntfa/test_pyntfa_pcp_stft.png' alt='comp' width=960/>
+<img src='https://github.com/aaspip/gallery/blob/main/pyntfa/test_pyntfa_pcp_st.png' alt='comp' width=960/>
+A general observation is that while STFT fails to extract the PcP phase distinctly from other phases and noise, ST is inferior to NTFA in that it is less focused on primary phases (P and PcP) and has weaker anti-noise ability.
+
 The following figure shows an application on the SS precursor (for studying MTZ)
 [demos/test_pyntfa_ss.py](https://github.com/aaspip/pyntfa/tree/main/demos/test_pyntfa_ss.py)
-<img src='https://github.com/aaspip/gallery/blob/main/pyntfa/test_pyntfa_ss.png' alt='comp' width=960/>
+<img src='https://github.com/aaspip/gallery/blob/main/pyntfa/test_pyntfa_ss_new.png' alt='comp' width=960/>
 
