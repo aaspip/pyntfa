@@ -167,8 +167,11 @@ plt.imshow(doutS[:,:,0]*doutS[:,:,0]+doutS[:,:,1]*doutS[:,:,1],cmap=plt.cm.jet, 
 plt.title('Time-frequency Spectrum (ST)',fontsize=10)
 plt.gca().set_xlim(xmin=0,xmax=500);
 plt.gca().text(-0.15,1.05,'(f)',transform=plt.gca().transAxes,size=16,weight='normal')
+plt.colorbar(orientation='horizontal',cax=fig.add_axes([0.37,0.05,0.1,0.015]),shrink=1);
 
 plt.savefig('test_pyntfa_ligo.png',format='png',dpi=300)
+plt.savefig('test_pyntfa_ligo.pdf',format='pdf',dpi=300)
+
 plt.show();
 
 

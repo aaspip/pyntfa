@@ -62,7 +62,8 @@ for ii in range(len(times)):
 plt.gca().text(-0.15,1,'(a)',transform=plt.gca().transAxes,size=18,weight='normal')
 
 plt.subplot(4,1,2)
-plt.imshow(np.log(dtf.T),clim=(-25,-10),cmap=plt.cm.jet, interpolation='none', extent=[t[0],t[-1],0,(nw*dw-dw)],origin='lower',aspect='auto');
+plt.imshow(np.log(dtf.T)/np.abs(np.log(dtf.T)).max(),clim=(-0.35,-0.15),cmap=plt.cm.jet, interpolation='none', extent=[t[0],t[-1],0,(nw*dw-dw)],origin='lower',aspect='auto');
+# plt.colorbar();#plotting this one is very tricky using the same scale (you can try)
 plt.ylabel('Frequency (Hz)');plt.title('Time-frequency Spectrum (NTFA)')
 plt.xlim(-400,200)
 plt.ylim([0, .2])
@@ -83,7 +84,9 @@ dout0,w0,dw,nw = stft1d(d,dt=1,inv=0,opt=1,sym=0,ntw=51,ot=0,wind=0,verb=1)
 dout=dout0.reshape([n1,nw,2],order='F');
 dtf=dout[:,:,0]*dout[:,:,0]+dout[:,:,1]*dout[:,:,1];
 plt.subplot(4,1,3)
-plt.imshow(np.log(dtf.T),clim=(-2,3),cmap=plt.cm.jet, interpolation='none', extent=[t[0],t[-1],0,(nw*dw-dw)],origin='lower',aspect='auto');
+plt.imshow(np.log(dtf.T)/np.abs(np.log(dtf.T)).max(),clim=(-0.35,-0.03),cmap=plt.cm.jet, interpolation='none', extent=[t[0],t[-1],0,(nw*dw-dw)],origin='lower',aspect='auto');
+# plt.colorbar();
+tt=np.log(dtf.T)/np.abs(np.log(dtf.T)).max();print('ttmax',tt.max(),tt.min())
 plt.ylabel('Frequency (Hz)');plt.title('Time-frequency Spectrum (STFT)')
 plt.xlim(-400,200)
 plt.ylim([0, .2])
@@ -103,7 +106,8 @@ dout0,w0,dw,nw = st1d(d,dt=1,inv=0,flo=0,fhi=0.5,verb=1)
 dout=dout0.reshape([n1,nw,2],order='F');
 dtf=dout[:,:,0]*dout[:,:,0]+dout[:,:,1]*dout[:,:,1];
 plt.subplot(4,1,4)
-plt.imshow(np.log(dtf.T),clim=(-10,-2),cmap=plt.cm.jet, interpolation='none', extent=[t[0],t[-1],0,(nw*dw-dw)],origin='lower',aspect='auto');
+plt.imshow(np.log(dtf.T)/np.abs(np.log(dtf.T)).max(),clim=(-0.35,-0.03),cmap=plt.cm.jet, interpolation='none', extent=[t[0],t[-1],0,(nw*dw-dw)],origin='lower',aspect='auto');
+# plt.colorbar();
 plt.ylabel('Frequency (Hz)');plt.title('Time-frequency Spectrum (ST)')
 plt.xlim(-400,200)
 plt.ylim([0, .2])
@@ -116,6 +120,7 @@ for ii in range(len(times)):
     plt.text(times[ii]+1,ymax-(ymax-ymin)*0.2,phases[ii],color='w')
 plt.gca().text(-0.15,1,'(d)',transform=plt.gca().transAxes,size=18,weight='normal')
 
+plt.colorbar(orientation='horizontal',cax=fig.add_axes([0.7,0.05,0.2,0.015]),shrink=1);
 
 plt.savefig('test_pyntfa_ss.png',format='png',dpi=300)
 plt.savefig('test_pyntfa_ss.pdf',format='pdf',dpi=300)

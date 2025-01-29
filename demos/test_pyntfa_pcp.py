@@ -78,9 +78,9 @@ dout2=dout2.reshape([n1,nw,2],order='F');
 basis2=basis2.reshape([n1,nw,2],order='F')
 
 ## Time-frequency spectra
-dtf0=dout0[:,:,0]*dout0[:,:,0]+dout0[:,:,1]*dout0[:,:,1];
-dtf1=dout1[:,:,0]*dout1[:,:,0]+dout1[:,:,1]*dout1[:,:,1];
-dtf2=dout2[:,:,0]*dout2[:,:,0]+dout2[:,:,1]*dout2[:,:,1];
+dtf0=(dout0[:,:,0]*dout0[:,:,0]+dout0[:,:,1]*dout0[:,:,1])*10000; #scale to make reviewer happy
+dtf1=(dout1[:,:,0]*dout1[:,:,0]+dout1[:,:,1]*dout1[:,:,1])*10000; #scale to make reviewer happy
+dtf2=(dout2[:,:,0]*dout2[:,:,0]+dout2[:,:,1]*dout2[:,:,1])*10000; #scale to make reviewer happy
 
 freqs=np.linspace(0,nw-1,nw)*dw;
 t=np.linspace(0,(n1-1)*dt,n1)
@@ -115,7 +115,8 @@ plt.xlabel('Time (s)');
 plt.gca().text(-0.18,1,'(c)',transform=plt.gca().transAxes,size=18,weight='normal')
 
 plt.subplot(3,2,2)
-plt.imshow(dtf0.T,clim=(0, 0.0005),cmap=plt.cm.jet, interpolation='none', extent=[0,(n1*1-1)*dt,0,(nw*dw-dw)],origin='lower',aspect='auto');
+plt.imshow(dtf0.T,clim=(0, 5),cmap=plt.cm.jet, interpolation='none', extent=[0,(n1*1-1)*dt,0,(nw*dw-dw)],origin='lower',aspect='auto');
+plt.colorbar();#plt.bar_label(fmt='%.2g',label='Amplitude');
 plt.ylabel('Frequency (Hz)');plt.title('Time-frequency Spectrum')
 plt.ylim([0, 1])
 #adding labels
@@ -123,10 +124,12 @@ ymin, ymax = plt.gca().get_ylim()
 for ii in range(len(times)):
     plt.plot([times[ii],times[ii]],[ymin,ymax],'w--',linewidth=1);
     plt.text(times[ii]+1,ymax-(ymax-ymin)*0.2,phases[ii],color='w')
-plt.gca().text(-0.18,1,'(d)',transform=plt.gca().transAxes,size=18,weight='normal')
+plt.gca().text(-0.22,1,'(d)',transform=plt.gca().transAxes,size=18,weight='normal')
 
 plt.subplot(3,2,4)
-plt.imshow(dtf1.T,clim=(0, 0.00005),cmap=plt.cm.jet, interpolation='none', extent=[0,(n1*1-1)*dt,0,(nw*dw-dw)],origin='lower',aspect='auto');
+plt.imshow(dtf1.T,clim=(0, 0.5),cmap=plt.cm.jet, interpolation='none', extent=[0,(n1*1-1)*dt,0,(nw*dw-dw)],origin='lower',aspect='auto');
+# plt.colorbar(fmt='%.2g',label='Amplitude');
+plt.colorbar(); 
 plt.ylabel('Frequency (Hz)');
 plt.ylim([0, 1])
 #adding labels
@@ -134,10 +137,11 @@ ymin, ymax = plt.gca().get_ylim()
 for ii in range(len(times)):
     plt.plot([times[ii],times[ii]],[ymin,ymax],'w--',linewidth=1);
     plt.text(times[ii]+1,ymax-(ymax-ymin)*0.2,phases[ii],color='w')
-plt.gca().text(-0.18,1,'(e)',transform=plt.gca().transAxes,size=18,weight='normal')
+plt.gca().text(-0.22,1,'(e)',transform=plt.gca().transAxes,size=18,weight='normal')
 
 plt.subplot(3,2,6)
-plt.imshow(dtf2.T,clim=(0, 0.0005),cmap=plt.cm.jet, interpolation='none', extent=[0,(n1*1-1)*dt,0,(nw*dw-dw)],origin='lower',aspect='auto');
+plt.imshow(dtf2.T,clim=(0, 5),cmap=plt.cm.jet, interpolation='none', extent=[0,(n1*1-1)*dt,0,(nw*dw-dw)],origin='lower',aspect='auto');
+plt.colorbar(); 
 plt.ylabel('Frequency (Hz)');plt.xlabel('Time (s)');
 plt.ylim([0, 1])
 #adding labels
@@ -145,7 +149,7 @@ ymin, ymax = plt.gca().get_ylim()
 for ii in range(len(times)):
     plt.plot([times[ii],times[ii]],[ymin,ymax],'w--',linewidth=1);
     plt.text(times[ii]+1,ymax-(ymax-ymin)*0.2,phases[ii],color='w')
-plt.gca().text(-0.18,1,'(f)',transform=plt.gca().transAxes,size=18,weight='normal')
+plt.gca().text(-0.22,1,'(f)',transform=plt.gca().transAxes,size=18,weight='normal')
 plt.savefig('test_pyntfa_pcp.png',format='png',dpi=300)
 plt.savefig('test_pyntfa_pcp.pdf',format='pdf',dpi=300)
 plt.show();

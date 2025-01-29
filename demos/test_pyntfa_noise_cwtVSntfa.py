@@ -196,6 +196,9 @@ for sigma in [0,0.1,0.2,0.3,0.4]:
     plt.gca().invert_yaxis();
     
     i=i+1;
+    
+plt.colorbar(orientation='horizontal',cax=fig.add_axes([0.05,0.05,0.08,0.015]),shrink=1, format="%4.2e", ticks=[0,0.0006*4,0.0006*8]);
+
 plt.savefig('test_pyntfa_noise_cwtVSntfa.png')
 plt.savefig('test_pyntfa_noise_cwtVSntfa.pdf')
 plt.show()

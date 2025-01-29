@@ -147,6 +147,8 @@ plt.subplot(1,3,3)
 plt.imshow(basis[:,:,1],cmap=plt.cm.jet, interpolation='none', extent=[0,nw*dw-dw,n1*1-1,0],aspect='auto');plt.xlabel('Frequency (Hz)');plt.ylabel('Time (s)');plt.title('Basis function (Real)')
 plt.gca().text(-0.18,1,'(e)',transform=plt.gca().transAxes,size=18,weight='normal')
 
+plt.colorbar(orientation='horizontal',cax=fig.add_axes([0.35,0.05,0.1,0.015]),shrink=1);
+
 plt.savefig('test_pyntfa_usarray1d.png',format='png',dpi=300)
 plt.show();
 
