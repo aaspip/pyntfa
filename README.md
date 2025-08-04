@@ -29,13 +29,13 @@ BibTeX:
 	}
 
     @article{pyntfa,
-      title={PYntfa: A python package for non-stationary time-frequency analysis},
+      title={Pyntfa: A Python package for nonstationary time-frequency analysis},
       author={Yangkang Chen and Chao Li and Yunfeng Chen and Liuqing Yang and Alexandros Savvaidis},
       journal={Seismological Research Letters},
-      volume={TBD},
-      number={TBD},
-      issue={TBD},
-      pages={TBD},
+      volume={96},
+      number={1},
+      issue={1},
+      pages={2660-2670},
       doi={10.1785/0220240457},
       year={2025}
     }
