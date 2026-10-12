@@ -3,6 +3,21 @@ import pyntfa as ntfa
 from pyntfa import binread
 import numpy as np
 
+from pathlib import Path
+import requests
+
+url = "https://github.com/aaspip/data/blob/main/usarray_trace.bin"
+output = Path("usarray_trace.bin")
+
+if not output.exists():
+    response = requests.get(url, timeout=120)
+    response.raise_for_status()
+    output.write_bytes(response.content)
+    print(f"Downloaded: {output}")
+else:
+    print(f"File already exists: {output}")
+    
+    
 # Download data from https://github.com/aaspip/data/blob/main/usarray_trace.bin
 earth=binread('usarray_trace.bin',n1=5400,n2=1)
 

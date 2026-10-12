@@ -3,7 +3,20 @@ import matplotlib.pyplot as plt
 from pyntfa import ntfa1d
 from pynpre import stft1d,st1d
 
+from pathlib import Path
+import requests
 
+url = "https://github.com/aaspip/data/blob/main/ligosig.bin"
+output = Path("ligosig.bin")
+
+if not output.exists():
+    response = requests.get(url, timeout=120)
+    response.raise_for_status()
+    output.write_bytes(response.content)
+    print(f"Downloaded: {output}")
+else:
+    print(f"File already exists: {output}")
+    
 # Data loading
 # Download the data from https://github.com/aaspip/data/blob/main/ligosig.bin
 fid=open("ligosig.bin","rb");

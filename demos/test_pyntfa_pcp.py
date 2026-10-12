@@ -5,6 +5,43 @@
 # https://github.com/aaspip/data/blob/main/PcP_processed.bin
 # https://github.com/aaspip/data/blob/main/PcP_noise.bin
 
+from pathlib import Path
+import requests
+
+url = "https://github.com/aaspip/data/blob/main/PcP_raw.bin"
+output = Path("PcP_raw.bin")
+
+if not output.exists():
+    response = requests.get(url, timeout=120)
+    response.raise_for_status()
+    output.write_bytes(response.content)
+    print(f"Downloaded: {output}")
+else:
+    print(f"File already exists: {output}")
+    
+url = "https://github.com/aaspip/data/blob/main/PcP_processed.bin"
+output = Path("PcP_processed.bin")
+
+if not output.exists():
+    response = requests.get(url, timeout=120)
+    response.raise_for_status()
+    output.write_bytes(response.content)
+    print(f"Downloaded: {output}")
+else:
+    print(f"File already exists: {output}")
+
+url = "https://github.com/aaspip/data/blob/main/PcP_noise.bin"
+output = Path("PcP_noise.bin")
+
+if not output.exists():
+    response = requests.get(url, timeout=120)
+    response.raise_for_status()
+    output.write_bytes(response.content)
+    print(f"Downloaded: {output}")
+else:
+    print(f"File already exists: {output}")
+    
+    
 import matplotlib.pyplot as plt
 import pyntfa as ntfa
 import numpy as np

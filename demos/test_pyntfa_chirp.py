@@ -2,6 +2,20 @@ import pyntfa as ntfa
 import numpy as np
 import matplotlib.pyplot as plt
 
+from pathlib import Path
+import requests
+
+url = "https://raw.githubusercontent.com/aaspip/data/main/cchirps.bin"
+output = Path("cchirps.bin")
+
+if not output.exists():
+    response = requests.get(url, timeout=120)
+    response.raise_for_status()
+    output.write_bytes(response.content)
+    print(f"Downloaded: {output}")
+else:
+    print(f"File already exists: {output}")
+    
 din=np.random.randn(1001)
 dout=ntfa.tf(din)
 
