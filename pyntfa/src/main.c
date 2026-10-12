@@ -43,7 +43,7 @@ static PyObject *ntft(PyObject *self, PyObject *args){
     
 	PyArg_ParseTuple(args, "Oif", &f1, &ndata, &fpar);
 
-    arrf1 = PyArray_FROM_OTF(f1, NPY_FLOAT, NPY_IN_ARRAY);
+    arrf1 = PyArray_FROM_OTF(f1, NPY_FLOAT, NPY_ARRAY_IN_ARRAY);
     
     npy_intp *sp=PyArray_SHAPE(arrf1);
 
@@ -219,7 +219,7 @@ static PyObject *tf1d(PyObject *self, PyObject *args){
 	    
 	if(!inv)
 	{
-    arrf1 = PyArray_FROM_OTF(f1, NPY_FLOAT, NPY_IN_ARRAY);
+    arrf1 = PyArray_FROM_OTF(f1, NPY_FLOAT, NPY_ARRAY_IN_ARRAY);
     npy_intp *sp=PyArray_SHAPE(arrf1);
 
 	data  = (float*)malloc(ndata * sizeof(float));
@@ -250,7 +250,7 @@ static PyObject *tf1d(PyObject *self, PyObject *args){
 	}else{
 	/*This part is to reconstruct the data given the basis functions and their weights (i.e., TF spectrum)*/
 	
-    arrf1 = PyArray_FROM_OTF(f1, NPY_FLOAT, NPY_IN_ARRAY);
+    arrf1 = PyArray_FROM_OTF(f1, NPY_FLOAT, NPY_ARRAY_IN_ARRAY);
     npy_intp *sp=PyArray_SHAPE(arrf1);
     	
     for (i=0; i<n1w*2; i++)
@@ -397,8 +397,8 @@ static PyObject *ntf1d(PyObject *self, PyObject *args){
 
 	sscc = tf_floatalloc(n12);
 	
-    arrf2 = PyArray_FROM_OTF(f2, NPY_FLOAT, NPY_IN_ARRAY);
-    arrf3 = PyArray_FROM_OTF(f3, NPY_FLOAT, NPY_IN_ARRAY);
+    arrf2 = PyArray_FROM_OTF(f2, NPY_FLOAT, NPY_ARRAY_IN_ARRAY);
+    arrf3 = PyArray_FROM_OTF(f3, NPY_FLOAT, NPY_ARRAY_IN_ARRAY);
 
 	for(i=0;i<n1*nw;i++)
 	{
@@ -509,7 +509,7 @@ static PyObject *ntf1d(PyObject *self, PyObject *args){
 	    
 	if(!inv)
 	{
-    arrf1 = PyArray_FROM_OTF(f1, NPY_FLOAT, NPY_IN_ARRAY);
+    arrf1 = PyArray_FROM_OTF(f1, NPY_FLOAT, NPY_ARRAY_IN_ARRAY);
     npy_intp *sp=PyArray_SHAPE(arrf1);
 
 	data  = (float*)malloc(ndata * sizeof(float));
@@ -541,7 +541,7 @@ static PyObject *ntf1d(PyObject *self, PyObject *args){
 	}else{
 	/*This part is to reconstruct the data given the basis functions and their weights (i.e., TF spectrum)*/
 	
-    arrf1 = PyArray_FROM_OTF(f1, NPY_FLOAT, NPY_IN_ARRAY);
+    arrf1 = PyArray_FROM_OTF(f1, NPY_FLOAT, NPY_ARRAY_IN_ARRAY);
     npy_intp *sp=PyArray_SHAPE(arrf1);
     	
     for (i=0; i<n1w*2; i++)
